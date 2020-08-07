@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="https://unpkg.com/element-ui@2.13.1/lib/theme-chalk/index.css">
+		<script src="https://unpkg.com/vue@2.6.11/dist/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://unpkg.com/element-ui@2.13.1/lib/index.js"></script>
+		<title>尝试01</title>
+		<style type="text/css">
+			body{
+				text-align: center;
+				font-size: 24px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<el-backtop target=".page-component__scroll .el-scrollbar__wrap"></el-backtop>
+			<el-container>
+				<el-header style="height:auto;background-color: white;">
+					<h1>欢迎使用计算题库练习工具</h1>
+					<div v-if="doing">
+						目前得分：{{df}}分。还有{{shuliang}}题。
+					</div>
+				</el-header>
+				<el-container>
+					<el-aside style="line-height: 200px;height:auto;background-color: white;" width="60px">
+
+					</el-aside>
+					<el-main>
+						<div v-if="doing">
+							<div v-if="ok">
+								恭喜你你完成了全部的题目！你一共做对了{{right}}题！<el-link href="./2timu.html":underline="false" type="primary">点击返回</el-link>
+							</div>
+							<div v-if="!ok">
+								<p>请答题：(全部保留{{weishu}}位小数)</p>
+								<p>{{first}}{{fuhao}}{{second}}=?</p>
+								<el-input-number v-model="answer" @keyup.enter.native="check" :min="-100000000" :max="100000000" label="请输入..."></el-input-number>
+								<el-button @click="check" type="primary" plain >检查</el-button>
+							</div>
+						</div>
+						<div v-if="!doing">
+							<p>这里是出题系统。请填写以下信息，我们就会自动出题。</p>
+							<br />
+							<span>题目数量：</span><el-input-number v-model="shuliang" :min="1" :max="1000000" label="请输入..."></el-input-number>
+							<br /><br />
+
+							<span>小数保留位数：</span><el-input-number v-model="weishu" :min="0" :max="8" label="请输入..."></el-input-number>
+
+							<span>题目类型：</span>
+							<br /><br />
+							<el-slider style="font-size: 16px;" :max="2000" v-model="daxiao"></el-slider><el-input-number v-model="daxiao" :min="1" :max="10000" label="请输入..."></el-input-number>以内的
+
+							<el-radio-group v-model="leixing">
+								<el-radio-button label="乘除" style="font-size: 35px;">乘除</el-radio-button>
+								<el-radio-button label="加减"style="font-size: 35px;">加减</el-radio-button>
+							</el-radio-group>法计算
+							<br />
+							<br />
+							<!--
+							<span>每题时间(秒)：</span><el-input-number v-model="shijian" :min="1" :max="200" label="请输入..."></el-input-number>
+							<br />
+							<br />
+							-->
+							<span>单题得分：</span><el-input-number v-model="defen" :min="1" :max="100000" label="请输入..."></el-input-number>
+							<br />
+							<br />
+							<br />
+							<br />
+							<br />
+							<br />
+							<br />
+							<div id="huibao">
+								请确认：
+								一会儿会出现{{shuliang}}题，类型是{{daxiao}}以内的{{leixing}}法,每题{{defen}}分，一共有{{defen*shuliang}}分。<!--每题思考+答题时间最多{{shijian}}秒，将在最多{{shijian*shuliang}}秒里完成。-->
+							</div>
+							<br />
+							<br />
+							<br />
+							<br />
+							<br />
+							<br />
+							<el-button style="font-size: 32px;" @click="chuti()" plain type="primary">出题</el-button>
+						</div>
+					</el-main>
+					<el-aside style="line-height: 200px;height:auto;background-color: white;" width="60px">
+
+					</el-aside>
+				</el-container>
+				<el-footer style="height:auto;background-color: white;">
+					<br /><p style="font-size: 16px;">Copyright &copy; 2020 7086cmd</p><br />
+				</el-footer>
+			</el-container>
+		</div>
+		<script type="text/javascript">
+			var vm=new Vue({
+				el:"#app",
+				data:{
+					shuliang:1,
+					leixing:"加减",
+					defen:4,
+					shijian:10,
+					daxiao:25,
+					doing:false,
+					first:0,
+					second:0,
+					doing:false,
+					fuhao:"+",
+					answer:0,
+					df:0,
+					ok:false,
+					right:0,
+					weishu:2
+					},
+				methods:{
+					chuti(){
+						this.answer=undefined; 
+						this.shuliang-=1;
+						if(this.doing==false){
+							this.shuliang+=1;
+						}
+						this.doing=true;
+						var x=Math.floor(Math.random()*(this.daxiao+1));
+						this.first=x;
+						var y=Math.floor(Math.random()*(this.daxiao+1));
+						this.second=y;
+						var f=Math.floor(Math.random()*2);
+						if(this.leixing=="加减"){
+							if(f==0){
+								this.fuhao="+";
+							}else if(f==1){
+								this.fuhao="-";
+							}
+						}else{
+							if(f==0){
+								this.fuhao="*";
+							}else if(f==1){
+								this.fuhao="/";
+							}
+						}
+						if(this.shuliang==0){
+							this.ok=true;
+						}
+					},
+					check(){
+						var ans=0;
+						if(this.fuhao=="+"){
+							ans=this.first+this.second;
+						}else if(this.fuhao=="-"){
+							ans=this.first-this.second;
+						}else if(this.fuhao=="*"){
+							ans=this.first*this.second;
+						}else if(this.fuhao=="/"){
+							ans=this.first/this.second;
+						}
+						if(this.answer==ans.toFixed(this.weishu)){
+							this.$notify({
+								title:'提醒',
+								message:'答对了',
+								type:'success'
+							});
+							this.df+=this.defen;
+
+							this.chuti();
+							this.right++;
+						}else{
+							this.$notify.error({
+								title:'提醒',
+								message:'答错了,正确答案是'+ans.toFixed(this.weishu)+'，你的答案是'+this.answer
+							});
+							this.chuti();
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
