@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0d7664"],{"773a":function(t,n,a){"use strict";a.r(n);var r=function(){var t=this,n=t.$createElement,a=t._self._c||n;return a("transition",{attrs:{name:"fade-transition",appear:""}},[a("div",[a("h2",{attrs:{id:"pad"}},[t._v("设计流程图")]),a("router-link",{attrs:{to:"../gra"}},[t._v("<设计图")]),a("router-link",{attrs:{to:"../video"}},[t._v("演示视频>")])],1)])},e=[],i=a("2877"),o={},s=Object(i["a"])(o,r,e,!1,null,null,null);n["default"]=s.exports}}]);
+//# sourceMappingURL=chunk-2d0d7664.82e69708.js.map
