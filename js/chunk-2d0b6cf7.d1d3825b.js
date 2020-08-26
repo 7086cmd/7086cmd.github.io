@@ -1,2 +1,2 @@
 (window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0b6cf7"],{"1f6b":function(n,t,e){"use strict";e.r(t);var c=function(){var n=this,t=n.$createElement,e=n._self._c||t;return e("h1",[n._v("没有找到您所需要的页面哦~"),e("v-btn",{attrs:{href:"../"}},[n._v("回到主页")])],1)},r=[],u=e("2877"),a=e("6544"),l=e.n(a),s=e("8336"),f={},o=Object(u["a"])(f,c,r,!1,null,null,null);t["default"]=o.exports;l()(o,{VBtn:s["a"]})}}]);
-//# sourceMappingURL=chunk-2d0b6cf7.20f939f9.js.map
+//# sourceMappingURL=chunk-2d0b6cf7.d1d3825b.js.map
