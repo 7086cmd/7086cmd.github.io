@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.41fc1c79d31aff25221d83aa328caeee.js"
+  "/precache-manifest.792dfe4c77737410f097ad25e76a4f8a.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "interduce"});
